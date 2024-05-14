@@ -47,21 +47,21 @@ class Bullet {
   //     }, 1250);
   //   }
 
-  //   didCollide(obstacle)
-  // {
-  //   const bulletsRect = this.element.getBoundingClientRect();
-  //   const obstacleRect = obstacle.element.getBoundingClientRect();
+    didCollide(obstacle)
+  {
+    const bulletRect = this.element.getBoundingClientRect();
+    const obstacleRect = obstacle.element.getBoundingClientRect();
 
-  //   if (
-  //     bulletsRect.left < obstacleRect.right &&
-  //     bulletsRect.right > obstacleRect.left &&
-  //     bulletsRect.top < obstacleRect.bottom &&
-  //     bulletsRect.bottom > obstacleRect.top
-  //   ) {
-  //     return true;
-  //   }
-  //     else {
-  //     return false;
-  //   }
-  // }
+    if (
+      bulletRect.left < obstacleRect.right &&
+      bulletRect.right > obstacleRect.left &&
+      bulletRect.top < obstacleRect.bottom &&
+      bulletRect.bottom > obstacleRect.top
+    ) {
+      return true;
+    }
+      else {
+      return false;
+    }
+  }
 }

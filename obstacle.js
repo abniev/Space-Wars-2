@@ -1,7 +1,7 @@
 class Obstacle {
   constructor(gameScreen) {
     this.gameScreen = gameScreen;
-    this.left = Math.random() * 1000 + 75;
+    this.left = Math.random() * 300 + 100;
     this.top = -150;
     this.width = 75;
     this.height = 55;
@@ -16,7 +16,7 @@ class Obstacle {
     this.gameScreen.appendChild(this.element);
   }
   move() {
-    this.top += 4;
+    this.top += 3;
     this.updatePostion();
   }
 
@@ -58,3 +58,23 @@ class Obstacle {
   //   }
   // }
 }
+
+// for (let b = 0; b < bullet.length; b++) {
+//   let bullet = bullet[b];
+//   ctx.beginPath();
+//   ctx.arc(bullet.x, bullet.y, 2, 0, Math.PI * 2);
+//   ctx.fill();
+//   bullet.x += bullet.dx;
+//   didCollide(bullet, obstacle);
+// };
+
+// function detectAndHandleCollisions(bullet, enemies) {
+//   for (var j = enemies.length; j-- > 0;) {
+//       var enemy = enemies[j];
+//       if (bullet.x > enemy.x && bullet.x < enemy.x + enemy.width && bullet.y > enemy.y && bullet.y < enemy.y + enemy.height) {
+//           enemies.splice(j, 1);
+//           // Handle bullet collisions here if needed
+//       }
+//   }
+// };
+

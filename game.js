@@ -78,6 +78,23 @@ class Game {
 
     this.obstacles.forEach((obstacle, i) => {
       obstacle.move();
+      this.bullets.forEach((bullet, j) => {
+        bullet.move();
+
+        if (bullet.didCollide(obstacle)) {
+          obstacle.createExplosion();
+          obstacle.element.remove();
+          bullet.element.remove();
+          this.bullets.splice(j, 1);
+          this.obstacles.splice(i, 1);
+          this.score++;
+        }
+
+        if (this.bullets.top < -10) {
+          bullet.element.remove();
+          this.bullets.splice(i, 1);
+        }
+      });
 
       if (this.player.didCollide(obstacle)) {
         obstacle.createExplosion();
@@ -90,29 +107,11 @@ class Game {
         obstacle.element.remove();
         this.obstacles.splice(i, 1);
         this.score++;
-
       }
-    });
-   
-    // this.bullets.move();
-
-  //   this.bullets.forEach((bullets, i) => {
-  //     bullets.move();
-      
-  //   if (this.bullets.didCollide(obstacle)) {
-  //     obstacle.createExplosion();
-  //     obstacle.element.remove();
-  //     this.obstacles.splice(i, 1);
-  //     this.score++;
-  //   }
-
-  //   if (this.bullets.top < -10) {
-  //     bullets.element.remove();
-  //     this.bullets.splice(i, 1);
-  //   }
-  // });
-}
-
+    })
+    this.scoreElement.innerHTML = this.score;
+    this.livesElement.innerHTML = this.lives;
+  }
 
   shoot() {
     this.bullets.push(
