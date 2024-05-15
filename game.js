@@ -106,7 +106,8 @@ class Game {
       if (obstacle.top > 640) {
         obstacle.element.remove();
         this.obstacles.splice(i, 1);
-        this.score++;
+        // this.score++;
+        this.lives -=1;
       }
     })
     this.scoreElement.innerHTML = this.score;
@@ -115,7 +116,7 @@ class Game {
 
   shoot() {
     this.bullets.push(
-      new Bullet(this.player.left, this.player.top, 5, 5, this.gameScreen)
+      new Bullet(this.player.left, this.player.top, 30, 10, this.gameScreen)
     );
   }
 
@@ -145,5 +146,8 @@ class Game {
     } else {
       this.endMessage.innerText = `You lost!  You ran out of lives and finished with a score of ${this.score}.`;
     }
+  }
+  audio(){
+    const explosionEffect = new audio("/mixkit-arcarde-chiptune-explosion-1691.wav");
   }
 }
