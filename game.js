@@ -16,7 +16,7 @@ class Game {
     this.obstacles = [];
     this.bullets = [];
     this.score = 0;
-    this.lives = 5;
+    this.lives = 8;
     this.timer = 60;
     this.gameIsOver = false;
     this.gameIntervalId = null;
@@ -28,6 +28,13 @@ class Game {
     this.clockContainer = document.getElementById("clock-container");
     this.clock = document.getElementById("clock");
     this.endMessage = document.getElementById("end-message");
+    this.explosionEffect = new Audio(
+      "/mixkit-arcade-chiptune-explosion-1691.wav"
+    );
+    this.laserBeam = new Audio("/mixkit-short-laser-gun-shot-1670.wav");
+    this.gameOver = new Audio("/arcade-fast-game-over.wav");
+    this.gameStart = new Audio("/gameStart.wav");
+    this.shipEngine = new Audio("/spaceship-engine.wav");
   }
   start() {
     this.gameScreen.style.height = `${this.height}px`;
@@ -47,7 +54,7 @@ class Game {
   gameLoop() {
     this.frames += 1;
 
-    if (this.frames % 120 === 0) {
+    if (this.frames % 90 === 0) {
       this.obstacles.push(new Obstacle(this.gameScreen));
     }
 
@@ -65,6 +72,7 @@ class Game {
 
     if (this.timer <= 0) {
       this.gameIsOver = true;
+      this.gameOver.play();
     }
 
     if (this.gameIsOver === true) {
@@ -82,6 +90,7 @@ class Game {
         bullet.move();
 
         if (bullet.didCollide(obstacle)) {
+          this.explosionEffect.play();
           obstacle.createExplosion();
           obstacle.element.remove();
           bullet.element.remove();
@@ -90,13 +99,14 @@ class Game {
           this.score++;
         }
 
-        if (this.bullets.top < -10) {
+        if (this.bullets.top < -5) {
           bullet.element.remove();
           this.bullets.splice(i, 1);
         }
       });
 
       if (this.player.didCollide(obstacle)) {
+        this.explosionEffect.play();
         obstacle.createExplosion();
         obstacle.element.remove();
         this.obstacles.splice(i, 1);
@@ -107,17 +117,18 @@ class Game {
         obstacle.element.remove();
         this.obstacles.splice(i, 1);
         // this.score++;
-        this.lives -=1;
+        this.lives -= 1;
       }
-    })
+    });
     this.scoreElement.innerHTML = this.score;
     this.livesElement.innerHTML = this.lives;
   }
 
   shoot() {
     this.bullets.push(
-      new Bullet(this.player.left, this.player.top, 30, 10, this.gameScreen)
+      new Bullet(this.player.left, this.player.top, 40, 10, this.gameScreen)
     );
+    this.laserBeam.play();
   }
 
   returnLivesMessage() {
@@ -125,7 +136,6 @@ class Game {
   }
 
   gameOverScreen() {
-    console.log("Game over");
     this.player.element.remove();
 
     this.obstacles.forEach((obstacle) => {
@@ -135,9 +145,6 @@ class Game {
     this.gameScreen.style.height = `${0}px`;
     this.gameScreen.style.width = `${0}px`;
     this.gameScreen.style.display = "none";
-    console.log("Game end screen", this.stats);
-    // this.stats.style.display = "none";
-    // this.clockContainer.style.display = "none";
     this.gameEndScreen.style.display = "inherit";
     if (this.timer <= 0) {
       this.endMessage.innerText = `You won! You finished with a score of ${
@@ -146,8 +153,6 @@ class Game {
     } else {
       this.endMessage.innerText = `You lost!  You ran out of lives and finished with a score of ${this.score}.`;
     }
-  }
-  audio(){
-    const explosionEffect = new audio("/mixkit-arcarde-chiptune-explosion-1691.wav");
+    this.gameOver.play();
   }
 }

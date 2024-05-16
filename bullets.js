@@ -47,8 +47,7 @@ class Bullet {
   //     }, 1250);
   //   }
 
-    didCollide(obstacle)
-  {
+  didCollide(obstacle) {
     const bulletRect = this.element.getBoundingClientRect();
     const obstacleRect = obstacle.element.getBoundingClientRect();
 
@@ -59,8 +58,7 @@ class Bullet {
       bulletRect.bottom > obstacleRect.top
     ) {
       return true;
-    }
-      else {
+    } else {
       return false;
     }
   }

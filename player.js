@@ -66,18 +66,3 @@ class Player {
     }
   }
 }
-
-///Shooting function///
-//  const bullets = []
-
-//  document.addEventListener("keydown", keyDownHandler, false);
-
-//  function keyDownHandler(event) {
-//   if (event.key === "a" || event.key === "A") {
-//       shoot();
-//   }
-// }
-
-// function shoot() {
-//   bullets.push({ x: player.x + player.width / 2, y: player.y });
-// }
