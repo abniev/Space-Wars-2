@@ -9,7 +9,7 @@ class Game {
       450,
       66,
       150,
-      "/heroSpaceShip.png"
+      "heroSpaceShip.png"
     );
     this.height = 570;
     this.width = 1000;
@@ -29,12 +29,12 @@ class Game {
     this.clock = document.getElementById("clock");
     this.endMessage = document.getElementById("end-message");
     this.explosionEffect = new Audio(
-      "/mixkit-arcade-chiptune-explosion-1691.wav"
+      "mixkit-arcade-chiptune-explosion-1691.wav"
     );
-    this.laserBeam = new Audio("/mixkit-short-laser-gun-shot-1670.wav");
-    this.gameOver = new Audio("/arcade-fast-game-over.wav");
-    this.gameStart = new Audio("/gameStart.wav");
-    this.shipEngine = new Audio("/spaceship-engine.wav");
+    this.laserBeam = new Audio("mixkit-short-laser-gun-shot-1670.wav");
+    this.gameOver = new Audio("arcade-fast-game-over.wav");
+    this.gameStart = new Audio("gameStart.wav");
+    this.shipEngine = new Audio("spaceship-engine.wav");
   }
   start() {
     this.gameScreen.style.height = `${this.height}px`;
