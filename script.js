@@ -13,7 +13,7 @@ window.onload = function () {
     game = new Game();
     game.start();
 
-    const shipEngine = new Audio("/spaceship-engine.wav");
+    const shipEngine = new Audio("spaceship-engine.wav");
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") {

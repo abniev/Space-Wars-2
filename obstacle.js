@@ -6,7 +6,7 @@ class Obstacle {
     this.width = 75;
     this.height = 55;
     this.element = document.createElement("img");
-    this.element.src = "/Enemy1.png";
+    this.element.src = "Enemy1.png";
     this.element.style.position = "absolute";
     this.element.style.left = `${this.left}px`;
     this.element.style.top = `${this.top}px`;
@@ -26,7 +26,7 @@ class Obstacle {
   }
   createExplosion() {
     let newElement = document.createElement("img");
-    newElement.src = "/explosion.gif";
+    newElement.src = "explosion.gif";
     newElement.style.position = "absolute";
     newElement.style.left = `${this.left}px`;
     newElement.style.top = `${this.top}px`;

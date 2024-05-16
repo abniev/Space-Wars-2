@@ -9,7 +9,7 @@ class Bullet {
     this.directionX = 0;
     this.directionY = 0;
     this.element = document.createElement("img");
-    this.element.src = "/laser-beam.png";
+    this.element.src = "laser-beam.png";
     this.element.style.position = "absolute";
     // this.element.style.backgroundColor = "red";
     this.element.style.left = `${this.left}px`;
